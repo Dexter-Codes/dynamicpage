@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="dynamicpage.View.LabelTemplate"
+             xmlns:controls="clr-namespace:dynamicpage.View">
+    <StackLayout BindableLayout.ItemsSource="{Binding DynamicLayoutValues}"
+                 BindableLayout.EmptyView="{Binding Nodata}"
+                 >
+    <BindableLayout.ItemTemplate>
+        <DataTemplate>
+            <controls:LabelCell/>
+        </DataTemplate>
+        <!--<DataTemplate>
+         <StackLayout Orientation="Horizontal">
+              <Label  Text="{Binding Key}" />
+              <Label  Text="{Binding Value}" />
+         </StackLayout>
+            </DataTemplate>-->
+        </BindableLayout.ItemTemplate>         
+    </StackLayout>
+</ContentView>
