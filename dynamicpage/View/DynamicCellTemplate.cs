@@ -119,7 +119,7 @@ namespace dynamicpage
            
             gridLayout.Children.Add(outerlayout);
 
-                View = new Frame
+                View = new CustomFrame
                 {
                     Content = gridLayout,
                     CornerRadius = 10,
@@ -127,7 +127,9 @@ namespace dynamicpage
                     VerticalOptions = LayoutOptions.StartAndExpand,
                     HorizontalOptions = LayoutOptions.Fill,
                     Margin = new Thickness(10, 5, 10, 5),
-                    Padding = 0,           
+                    Padding = 0,
+                    BorderColor=Color.Gray,
+                    
                 };
             this.View.Margin = 5;
 
