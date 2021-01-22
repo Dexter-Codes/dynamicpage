@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using dynamicpage.Model;
 using dynamicpage.View;
+using PanCardView;
 using Xamarin.Forms;
 
 namespace dynamicpage
@@ -26,32 +27,53 @@ namespace dynamicpage
             }
         }
 
+        public List<List<Dictionary<string,string>>> _test { get; set; }
+
+        public List<List<Dictionary<string, string>>> Test
+        {
+            get { return _test; }
+            set
+            {
+                _test = value;
+                OnPropertyChanged("Test");
+            }
+        }
+
+        public int rowHeight { get; set; }
 
 
         public MainPage()
         {
             InitializeComponent();
             DynamicLayoutValues = new List<Dictionary<string, LabelModel>>();
-            SetValues();
-            DynamicOrderList.GetValues(DynamicLayoutValues);
+            Test = new List<List<Dictionary<string, string>>>();
+            dummyMethod();
+            DynamicCellTemplate.GetValues(Test);
             AddChildLayouts();
-           // AddChildViews();
             this.Content.BindingContext = this;
         }
 
         public void AddChildLayouts()
         {
-            //plot.ItemsSource = DynamicLayoutValues;
-            // plot.RowHeight = 120;
-            // Parent.Children.Add(new CustomTemplate());
+        
+            if (Device.RuntimePlatform == Device.Android)
+                rowHeight = rowHeight + 10;
+           
+
             Content = new StackLayout
             {
                 Margin = new Thickness(5),
                 Children = {
-                new ListView { ItemTemplate = new DataTemplate(typeof(DynamicOrderList)), ItemsSource = DynamicLayoutValues, Margin = new Thickness(0, 0, 0, 0),RowHeight=150 }
-            }
+                    new ListView { ItemTemplate = new DataTemplate(typeof(DynamicCellTemplate)), ItemsSource = Test, Margin = new Thickness(0, 10, 0, 10), RowHeight = rowHeight, HasUnevenRows = false, SeparatorVisibility=SeparatorVisibility.None,}
+                }
+                
             };
+
+            this.BindingContext = Test;
+
         }
+
+
         public void SetValues()
         {
 
@@ -74,5 +96,59 @@ namespace dynamicpage
             DynamicLayoutValues[1].Add("Entr6", new LabelModel { Key = "Entry", Data = "PropertyId-2", row = 2, col = 0, ID = "24" });
             DynamicLayoutValues[1].Add("Entr7", new LabelModel { Key = "Entry", Data = "899", row = 2, col = 1, ID = "23" });
         }
+
+
+        void dummyMethod()
+        {
+            var listItems = new List<List<Dictionary<string, string>>>();
+            for (int index = 0; index < 6; index++)
+            {
+                var itemDict1 = new List<Dictionary<string, string>>();
+                var item1 = new Dictionary<string, string>();
+                item1["Type"] = "Label";
+                item1["value"] = "12952";
+                var item2 = new Dictionary<string, string>();
+                item2["Type"] = "Label";
+                item2["value"] = "Pending" + index.ToString();
+                var item3 = new Dictionary<string, string>();
+                item3["Type"] = "Label";
+                item3["value"] = "ClientName" + index.ToString();
+                var item4 = new Dictionary<string, string>();
+                item4["Type"] = "Label";
+                item4["value"] = "09/12/20" + index.ToString();
+                var item5 = new Dictionary<string, string>();
+                item5["Type"] = "Label";
+                item5["value"] = "PropertyID -" + index.ToString();
+                var item6 = new Dictionary<string, string>();
+                item6["Type"] = "Label";
+                item6["value"] = "770" + index;
+                itemDict1.Add(item1);
+                itemDict1.Add(item2);
+                itemDict1.Add(item3);
+                itemDict1.Add(item4);
+                itemDict1.Add(item5);
+                itemDict1.Add(item6);
+                listItems.Add(itemDict1);
+            }
+            Test = listItems;
+
+
+            foreach(var item in Test)
+            {
+                for(int j=0;j<item.Count;j++)
+                {                    
+                    if(j%2 == 0)
+                    {
+                        rowHeight = rowHeight + 35;
+                    }
+                }
+                break;
+            }
         }
+
+
+
+
+
+    }
     }

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="dynamicpage.View.Test">
+    <ContentPage.Content>
+       <StackLayout>
+                        <Frame>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.ColumnSpan="2">
+                                    <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Label Text="dummy"  Grid.Column="0" Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                         <Label Text="tty"  Grid.Column="1" Grid.Row="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                                     </StackLayout>
+                                     <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <Label Text="dummy"  Grid.Column="0" Grid.Row="0" HorizontalOptions="FillAndExpand"/>
+                                         <Label Text="tty"  Grid.Column="1" Grid.Row="0" HorizontalOptions="FillAndExpand"/>
+                                     </StackLayout>
+                                 </StackLayout>  
+                            </Grid>
+                        </Frame>
+                </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
