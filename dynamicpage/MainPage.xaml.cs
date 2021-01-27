@@ -39,7 +39,7 @@ namespace dynamicpage
             }
         }
 
-        public int rowHeight { get; set; }
+        public int rowHeight { get; set; } 
 
 
         public MainPage()
@@ -47,8 +47,9 @@ namespace dynamicpage
             InitializeComponent();
             DynamicLayoutValues = new List<Dictionary<string, LabelModel>>();
             Test = new List<List<Dictionary<string, string>>>();
-            dummyMethod();
-            DynamicCellTemplate.GetValues(Test);
+            // dummyMethod();
+            FormData();
+            DynamicForm.GetValues(Test);
             AddChildLayouts();
             this.Content.BindingContext = this;
         }
@@ -58,13 +59,15 @@ namespace dynamicpage
         
             if (Device.RuntimePlatform == Device.Android)
                 rowHeight = rowHeight + 10;
-           
+
+
+            rowHeight = 200;
 
             Content = new StackLayout
             {
                 Margin = new Thickness(5),
                 Children = {
-                    new ListView { ItemTemplate = new DataTemplate(typeof(DynamicCellTemplate)), ItemsSource = Test, Margin = new Thickness(0, 10, 0, 10), RowHeight = rowHeight, HasUnevenRows = false, SeparatorVisibility=SeparatorVisibility.None,}
+                    new ListView { ItemTemplate = new DataTemplate(typeof(DynamicForm)), ItemsSource = Test, Margin = new Thickness(0, 10, 0, 10), RowHeight = rowHeight, HasUnevenRows = false, SeparatorVisibility=SeparatorVisibility.None,InputTransparent=true,}
                 }
                 
             };
@@ -144,6 +147,61 @@ namespace dynamicpage
                 }
                 break;
             }
+        }
+
+        void FormData()
+        {
+            var listItems = new List<List<Dictionary<string, string>>>();
+            for (int index = 0; index < 1; index++)
+            {
+                var itemDict1 = new List<Dictionary<string, string>>();
+                var item0 = new Dictionary<string, string>();
+                item0["Type"] = "Label";
+                item0["value"] = "Complete";
+                var item1 = new Dictionary<string, string>();
+                item1["Type"] = "Label";
+                item1["value"] = "OrderNo";
+                var item2 = new Dictionary<string, string>();
+                item2["Type"] = "Label";
+                item2["value"] = "12355";
+                var item3 = new Dictionary<string, string>();
+                item3["Type"] = "Label";
+                item3["value"] = "ClientName";
+                var item4 = new Dictionary<string, string>();
+                item4["Type"] = "Label";
+                item4["value"] = "ClientName1" ;
+                var item5 = new Dictionary<string, string>();
+                item5["Type"] = "Label";
+                item5["value"] = "PropertyName" ;
+                var item6 = new Dictionary<string, string>();
+                item6["Type"] = "Label";
+                item6["value"] = "770" + index;
+                var item7 = new Dictionary<string, string>();
+                item7["Type"] = "Label";
+                item7["value"] = "Address";
+                var item8 = new Dictionary<string, string>();
+                item8["Type"] = "Entry";
+                item8["value"] = "Property13/Newark";
+                var item9 = new Dictionary<string, string>();
+                item9["Type"] = "Label";
+                item9["value"] = "Notes";
+                var item10 = new Dictionary<string, string>();
+                item10["Type"] = "Entry";
+                item10["value"] = "n/a";
+                itemDict1.Add(item0);
+                itemDict1.Add(item1);
+                itemDict1.Add(item2);
+                itemDict1.Add(item3);
+                itemDict1.Add(item4);
+                itemDict1.Add(item5);
+                itemDict1.Add(item6);
+                itemDict1.Add(item7);
+                itemDict1.Add(item8);
+                itemDict1.Add(item9);
+                itemDict1.Add(item10);
+                listItems.Add(itemDict1);
+            }
+            Test = listItems;
         }
 
 
