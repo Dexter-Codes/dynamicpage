@@ -133,8 +133,6 @@ namespace dynamicpage
                 };
             this.View.Margin = 5;
 
-
-            //  }
         }
 
     }

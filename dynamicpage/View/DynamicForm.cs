@@ -6,26 +6,74 @@ using Xamarin.Forms;
 
 namespace dynamicpage.View
 {
-    public class DynamicForm:ViewCell
+    public class DynamicForm:ContentPage
     {
-        static List<List<Dictionary<string, string>>> list;
+        static List<Dictionary<string, string>> list;
+        public List<Dictionary<string, string>> _test { get; set; }
+
+        public List<Dictionary<string, string>> Test
+        {
+            get { return _test; }
+            set
+            {
+                _test = value;
+                OnPropertyChanged("Test");
+            }
+        }
         public DynamicForm()
         {
-            CreateView();
-        }
-        public static void GetValues(List<List<Dictionary<string, string>>> _list)
+            Test = new List<Dictionary<string, string>>();
+            FormData();
+            SetView();
+        }      
+        void FormData()
         {
-            list = new List<List<Dictionary<string, string>>>(_list);
+                var itemDict1 = new List<Dictionary<string, string>>();
+                var item0 = new Dictionary<string, string>();
+                item0["Type"] = "Status_Label";
+                item0["value"] = "Complete";
+                var item1 = new Dictionary<string, string>();
+                item1["Type"] = "Title_Label";
+                item1["Title"] = "OrderNo";
+                item1["value"] = "123456";
+                var item2 = new Dictionary<string, string>();
+                item2["Type"] = "Title_Label";
+                item2["Title"] = "Client Name";
+                item2["value"] = "Client 1";
+                var item3 = new Dictionary<string, string>();
+                item3["Type"] = "Title_Label";
+                item3["Title"] = "Property Name";
+                item3["value"] = "7700";
+                var item4 = new Dictionary<string, string>();
+                item4["Type"] = "Title_Entry";
+                item4["Title"] = "Address";
+                item4["value"] = "13/a New Orleans";
+                var item5 = new Dictionary<string, string>();
+                item5["Type"] = "Title_Entry";
+                item5["Title"] = "Notes";
+                item5["value"] = "N/A";
+                var item6 = new Dictionary<string, string>();
+                item6["Type"] = "Title_Button";
+                item6["value1"] = "Before Images";
+                item6["value2"] = "After Images";
+                itemDict1.Add(item0);
+                itemDict1.Add(item1);
+                itemDict1.Add(item2);
+                itemDict1.Add(item3);
+                itemDict1.Add(item4);
+                itemDict1.Add(item5);
+                itemDict1.Add(item6);
+
+            Test = itemDict1;
         }
         public void CreateView()
         {
            
-            var amp = list;
-            var test = amp[0];
+            var test = Test;
             StackLayout innerlayout = null;
             int colmCounter = 0;
 
-            var gridLayout = new Grid { RowSpacing = 10, Padding = new Thickness(0, 10, 0, 10), Margin = 10 };
+            var gridLayout = new Grid { RowSpacing = 10, Padding = new Thickness(0, 10, 0, 10), Margin = 10,BackgroundColor=Color.Transparent };
 
             gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
             gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
@@ -118,22 +166,100 @@ namespace dynamicpage.View
                     {
                         var editor = new Editor
                         {
-                            Placeholder="new text"
+                            Placeholder="new text",
+                            HorizontalOptions=LayoutOptions.FillAndExpand,
+                            VerticalOptions=LayoutOptions.FillAndExpand
+
                         };
                         gridLayout.Children.Add(editor, colmCounter, 0);
                         innerlayout.Children.Add(editor);
+                        Grid.SetColumnSpan(editor, 2);
                         Grid.SetColumnSpan(outerlayout, 2);
                         colmCounter=0;
                     }
 
             }
             gridLayout.Children.Add(outerlayout);
-            View = gridLayout;
-            //View = new Frame
-            //{
-            //    Content = gridLayout
-            //};
-            //View.Margin = 5;
+        
         }
-    }
+        void SetView()
+        {
+            var test = Test;
+
+            var gridLayout = new Grid { RowSpacing = 10, Padding = new Thickness(0, 10, 0, 10), Margin = 10, BackgroundColor = Color.Transparent };
+
+            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
+            gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
+
+            gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+            var outerlayout = new StackLayout { Margin = 10 };
+            for (int i = 0; i < test.Count; i++)
+            {
+                var data = test[i];
+                List<string> yui = new List<string>();
+                int l = 0;
+                foreach (string item in data.Values)
+                {
+                    var k = item;
+                    yui.Add(k);
+                    l++;
+                }
+                if (test[i].ContainsValue("Status_Label"))
+                {
+                  
+                    var layout = new StackLayout { Orientation = StackOrientation.Horizontal, Margin = 10 };
+                    var label1 = new CustomLabel { HorizontalOptions = LayoutOptions.StartAndExpand ,WidthRequest=130  };
+                    var label2 = new CustomLabel { HorizontalOptions = LayoutOptions.CenterAndExpand,WidthRequest=130,  BindingKey = yui[1] };
+                    gridLayout.Children.Add(label1, 0, 0);
+                    gridLayout.Children.Add(label2,1,0);
+                    layout.Children.Add(label1);
+                    layout.Children.Add(label2);
+                    outerlayout.Children.Add(layout);
+                }
+                else if (test[i].ContainsValue("Title_Label"))
+                {                    
+                    var layout = new StackLayout
+                    { Orientation = StackOrientation.Horizontal, Margin = 10 };
+                    var label1 = new CustomLabel { HorizontalOptions = LayoutOptions.StartAndExpand, WidthRequest = 130,  BindingKey = yui[1] };
+                    var label2 = new CustomLabel { HorizontalOptions = LayoutOptions.CenterAndExpand, WidthRequest = 130,  BindingKey = yui[2] };
+                    gridLayout.Children.Add(label1, 0, 0);
+                    gridLayout.Children.Add(label2, 1, 0);
+                    layout.Children.Add(label1);
+                    layout.Children.Add(label2);
+                    outerlayout.Children.Add(layout);
+                }
+                else if(test[i].ContainsValue("Title_Entry"))
+                {
+                    var layout = new StackLayout { Orientation = StackOrientation.Vertical, Margin = 10 };
+                    var label = new CustomLabel { HorizontalOptions = LayoutOptions.StartAndExpand, BindingKey=yui[1] };
+                    var entry = new CustomEditor { HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.StartAndExpand,
+                        HeightRequest = 100,IsEnabled=true, Text=yui[2],BackgroundColor=Color.White,RoundedCornerRadius=20,BorderWidth=1 };
+                    gridLayout.Children.Add(label, 0, 0);
+                    gridLayout.Children.Add(entry, 0, 0);
+                    Grid.SetColumnSpan(entry, 2);
+                    layout.Children.Add(label);
+                    layout.Children.Add(entry);
+                    outerlayout.Children.Add(layout);
+                    Grid.SetColumnSpan(layout, 2);
+                }
+                else if(test[i].ContainsValue("Title_Button"))
+                {
+                    var layout = new StackLayout { Orientation = StackOrientation.Horizontal, Margin = 10 };
+                    var btn1 = new RoundedButtonLeft { HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions=LayoutOptions.StartAndExpand,
+                        Text = yui[1],BackgroundColor=Color.Green,CornerRadius=0,TextColor=Color.White };
+                    var btn2 = new RoundedButtonRight { HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.StartAndExpand,
+                        Text = yui[2],BackgroundColor=Color.Green,CornerRadius=0,TextColor=Color.White };
+                    gridLayout.Children.Add(btn1, 0, 0);
+                    gridLayout.Children.Add(btn2, 1, 0);
+                    layout.Children.Add(btn1);
+                    layout.Children.Add(btn2);
+                    outerlayout.Children.Add(layout);
+                }
+            }
+            Grid.SetColumnSpan(outerlayout, 2);
+            gridLayout.Children.Add(outerlayout);
+            Content = new StackLayout { Children = { gridLayout } };
+
+        }
+    }      
 }
