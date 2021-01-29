@@ -47,13 +47,14 @@ namespace dynamicpage.iOS.Renderers
 
 
 
-            Layer.BorderColor = UIColor.White.CGColor;
-            Layer.CornerRadius = 10;
+            Layer.BorderColor = UIColor.LightGray.CGColor;
+            Layer.BorderWidth = 1;
+            Layer.CornerRadius = 20;
             Layer.MasksToBounds = false;
             Layer.ShadowOffset = new CGSize(-2, 2);
             Layer.ShadowRadius = 5;
             Layer.ShadowOpacity = 0.4f;
-
+            Layer.ShadowColor = UIColor.Red.CGColor;
         }
     }
 }

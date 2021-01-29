@@ -26,7 +26,7 @@ namespace dynamicpage.Droid.Renderers
         protected override void OnElementChanged(ElementChangedEventArgs<Xamarin.Forms.Editor> e)
         {
             base.OnElementChanged(e);
-            customControl = (CustomEditor)Element;
+           // customControl = (CustomEditor)Element;
             //if (Control != null)
             //{
             //    if (initial)
@@ -39,15 +39,22 @@ namespace dynamicpage.Droid.Renderers
 
             if (e.NewElement != null)
             {
-               // var customControl = (CustomEditor)Element;
+                var customControl = (CustomEditor)Element;
 
-                //   Control.SetBackgroundResource(Resource.Drawable.shadow);
-                //     this.Elevation = 2.0f;
-                //     this.TranslationZ = 0.0f;
-                //     SetZ(10.0f);
+
+              //   SetOutlineSpotShadowColor(Android.Graphics.Color.Red);
+                
+                
+            //    Control.Background = AddPickerStyles();
+           //        Control.SetBackgroundResource(Resource.Drawable.shadow);
+                //this.Elevation = customControl.RoundedCornerRadius;
+                // this.TranslationZ = 5.0f;
+           //     Elevation = 10.0f;
+           //     TranslationZ = 10.0f;
+           //     SetZ(20.0f);
 
                     ApplyBorder(customControl.BorderWidth, customControl.BorderColor, customControl.RoundedCornerRadius);
-              //  Control.Background = AddPickerStyles();
+                //  Control.Background = Xamarin.Forms.Forms.Context.GetDrawable(Resource.Drawable.shadow);
             }
         }
 
@@ -60,11 +67,11 @@ namespace dynamicpage.Droid.Renderers
             if (CustomEditor.BorderWidthProperty.PropertyName == e.PropertyName)
             {
                 ApplyBorder(customControl.BorderWidth, customControl.BorderColor, customControl.RoundedCornerRadius);
-             //   Control.Background = AddPickerStyles();
+               // Control.Background = AddPickerStyles();
             }
             else if (CustomEditor.BorderColorProperty.PropertyName == e.PropertyName)
             {
-               // Control.Background = AddPickerStyles();
+            //    Control.Background = AddPickerStyles();
                   ApplyBorder(customControl.BorderWidth, customControl.BorderColor, customControl.RoundedCornerRadius);
 
             }
@@ -73,8 +80,33 @@ namespace dynamicpage.Droid.Renderers
 
         void ApplyBorder(int width, Color color, int cornerRadius)
         {
+
+            var topLeftCorner = Context.ToPixels(cornerRadius);
+            var topRightCorner = Context.ToPixels(cornerRadius);
+            var bottomLeftCorner = Context.ToPixels(cornerRadius);
+            var bottomRightCorner = Context.ToPixels(cornerRadius);
+
+            var cornerRadii = new[]
+            {
+                    topLeftCorner,
+                    topLeftCorner,
+
+                    topRightCorner,
+                    topRightCorner,
+
+                    bottomRightCorner,
+                    bottomRightCorner,
+
+                    bottomLeftCorner,
+                    bottomLeftCorner,
+                };
+
+
+
+
             GradientDrawable gd = new GradientDrawable();
-            gd.SetCornerRadius(cornerRadius);
+            gd.SetCornerRadii(cornerRadii);
+            //gd.SetCornerRadius(cornerRadius);
             gd.SetStroke(width, color.ToAndroid());
             this.Control.Background = gd;
         }
@@ -146,23 +178,23 @@ namespace dynamicpage.Droid.Renderers
 
 
 
-        //public LayerDrawable AddPickerStyles()
-        //{
+        public LayerDrawable AddPickerStyles()
+        {
 
-        //    var shape = new ShapeDrawable(new Android.Graphics.Drawables.Shapes.RectShape());
-        //    shape.Paint.Color = Android.Graphics.Color.Transparent;
-        //    shape.Paint.SetStyle(Paint.Style.Stroke);
-        //    shape.SetPadding(30, 10, 20, 10);
-        //    shape.Paint.StrokeWidth = 0;
+            var shape = new ShapeDrawable(new Android.Graphics.Drawables.Shapes.RectShape());
+            shape.Paint.Color = Android.Graphics.Color.Transparent;
+            shape.Paint.SetStyle(Paint.Style.Stroke);
+            shape.SetPadding(30, 10, 20, 10);
+            shape.Paint.StrokeWidth = 0;
 
-        //    var gdBorderColor = GetBorderDrawable(customControl.BorderWidth, customControl.BorderColor, customControl.RoundedCornerRadius);
-        //    var gdBackgroundColor = GetBackgroundColorDrawable(customControl.RoundedCornerRadius, customControl.BackgroundColor);
-        //    Drawable[] layers = { gdBackgroundColor, gdBorderColor, shape };
-        //    LayerDrawable layerDrawable = new LayerDrawable(layers);
-        //    layerDrawable.SetLayerInset(0, 0, 0, 0, 0);
+            var gdBorderColor = GetBorderDrawable(customControl.BorderWidth, customControl.BorderColor, customControl.RoundedCornerRadius);
+            var gdBackgroundColor = GetBackgroundColorDrawable(customControl.RoundedCornerRadius, customControl.BackgroundColor);
+            Drawable[] layers = { gdBackgroundColor, gdBorderColor, shape };
+            LayerDrawable layerDrawable = new LayerDrawable(layers);
+            layerDrawable.SetLayerInset(0, 0, 0, 0, 0);
 
-        //    return layerDrawable;
-        //}
+            return layerDrawable;
+        }
 
         GradientDrawable GetBorderDrawable(int width, Color borderColor, int cornerRadius)
         {
@@ -176,7 +208,7 @@ namespace dynamicpage.Droid.Renderers
         {
             GradientDrawable gd = new GradientDrawable();
             gd.SetCornerRadius(cornerRadius);
-            gd.SetColorFilter(backgroundColor.ToAndroid(), PorterDuff.Mode.SrcAtop);
+            gd.SetColorFilter(Android.Graphics.Color.White, PorterDuff.Mode.SrcAtop);
             return gd;
 
         }

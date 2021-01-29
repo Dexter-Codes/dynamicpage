@@ -233,12 +233,13 @@ namespace dynamicpage.View
                     var layout = new StackLayout { Orientation = StackOrientation.Vertical, Margin = 10 };
                     var label = new CustomLabel { HorizontalOptions = LayoutOptions.StartAndExpand, BindingKey=yui[1] };
                     var entry = new CustomEditor { HorizontalOptions = LayoutOptions.FillAndExpand, VerticalOptions = LayoutOptions.StartAndExpand,
-                        HeightRequest = 100,IsEnabled=true, Text=yui[2],BackgroundColor=Color.White,RoundedCornerRadius=20,BorderWidth=1 };
+                        HeightRequest = 100,IsEnabled=true, Text=yui[2],BackgroundColor=Color.Transparent,RoundedCornerRadius=20,BorderWidth=1,BorderColor=Color.Transparent };
+                    var frame = new CustomFrame { CornerRadius = 20, Content = entry,Padding=0,HasShadow=true };
                     gridLayout.Children.Add(label, 0, 0);
-                    gridLayout.Children.Add(entry, 0, 0);
-                    Grid.SetColumnSpan(entry, 2);
+                    gridLayout.Children.Add(frame, 0, 0);
+                    Grid.SetColumnSpan(frame, 2);
                     layout.Children.Add(label);
-                    layout.Children.Add(entry);
+                    layout.Children.Add(frame);
                     outerlayout.Children.Add(layout);
                     Grid.SetColumnSpan(layout, 2);
                 }

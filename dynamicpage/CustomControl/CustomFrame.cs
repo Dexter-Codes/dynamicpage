@@ -5,17 +5,19 @@ namespace dynamicpage.CustomControl
 {
     public class CustomFrame:Frame
     {
-        public static BindableProperty CornerRadiusProperty
-          = BindableProperty.Create(nameof(CornerRadius), typeof(int), typeof(CustomFrame), 10);
+
+        public static BindableProperty BorderWidthProperty
+          = BindableProperty.Create(nameof(BorderWidth), typeof(float), typeof(CustomFrame), (float)0);
+
+        public float BorderWidth
+        {
+            get { return (float)GetValue(BorderWidthProperty); }
+            set { SetValue(BorderWidthProperty, value); }
+        }
 
         public static BindableProperty ShadowColorProperty
            = BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(CustomFrame), Color.Gray);
-
-        public int CornerRadius
-        {
-            get { return (int)GetValue(CornerRadiusProperty); }
-            set { SetValue(CornerRadiusProperty, value); }
-        }
+    
         public Color ShadowColor
         {
             get { return (Color)GetValue(ShadowColorProperty); }

@@ -31,8 +31,9 @@ namespace dynamicpage.iOS.Renderers
                 Control.Layer.CornerRadius = customControl.RoundedCornerRadius;
 
                 Control.Layer.BorderWidth = customControl.BorderWidth;
+                Control.Layer.BackgroundColor= UIColor.White.CGColor;
                 Control.Layer.BorderColor = customControl.BorderColor.ToUIColor().CGColor;
-                SetupLayer();
+                //SetupLayer();
             }
         }
 
@@ -54,12 +55,12 @@ namespace dynamicpage.iOS.Renderers
 
                 Control.Layer.BorderWidth = customControl.BorderWidth;
                 Control.Layer.CornerRadius = customControl.RoundedCornerRadius;
-                SetupLayer();
+               // SetupLayer();
             }
             else if (CustomEditor.BorderColorProperty.PropertyName == e.PropertyName)
             {
                 Control.Layer.BorderColor = customControl.BorderColor.ToUIColor().CGColor;
-                SetupLayer();
+              //  SetupLayer();
             }
 
             else if (CustomEditor.IsExpandableProperty.PropertyName == e.PropertyName)
@@ -69,7 +70,7 @@ namespace dynamicpage.iOS.Renderers
                 else
                     Control.ScrollEnabled = true;
 
-                SetupLayer();
+              //  SetupLayer();
             }
         }
         void SetupLayer()
