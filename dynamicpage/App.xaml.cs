@@ -14,7 +14,7 @@ namespace dynamicpage
         {
             InitializeComponent();
             PushValues();
-            MainPage = new DynamicForm();
+            MainPage = new DynamicOrderDetail();
                 //new DynamicPage(uiElements);
         }
 
