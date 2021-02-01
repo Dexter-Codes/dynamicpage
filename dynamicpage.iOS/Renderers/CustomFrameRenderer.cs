@@ -54,7 +54,7 @@ namespace dynamicpage.iOS.Renderers
             Layer.ShadowOffset = new CGSize(-2, 2);
             Layer.ShadowRadius = 5;
             Layer.ShadowOpacity = 0.4f;
-            Layer.ShadowColor = UIColor.Red.CGColor;
+            Layer.ShadowColor = UIColor.SystemGray2Color.CGColor;
         }
     }
 }
