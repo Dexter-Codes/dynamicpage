@@ -13,7 +13,7 @@
 
           <Grid.Resources>    
             <ResourceDictionary>    
-                <converters:DictionaryConverter x:Key="DictConverter"/>    
+                <converters:DictionaryConverter x:Key="dictConverter"/>    
             </ResourceDictionary>    
          </Grid.Resources>
 
@@ -28,13 +28,13 @@
           <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.ColumnSpan="2" Margin="0">
               <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10">
               <controls:CustomLabel 
-                  BindingKey="{Binding Path=., Mode=TwoWay, Converter={StaticResource DictConverter},ConverterParameter=0}"
+                  BindingKey="{Binding Path=., Mode=TwoWay, Converter={StaticResource dictConverter},ConverterParameter=0}"
                       Grid.Column="0" Grid.Row="0" HorizontalOptions="FillAndExpand"
                      VerticalOptions="FillAndExpand" WidthRequest="130"/>
                   
               <controls:CustomFrame CornerRadius="20" HasShadow="True" Padding="0" Grid.Column="0" Grid.Row="0">
               <controls:CustomEditor
-                  Text="{Binding Path=., Mode=TwoWay,Converter={StaticResource DictConverter},ConverterParameter=1}"
+                  Text="{Binding Path=., Mode=TwoWay,Converter={StaticResource dictConverter},ConverterParameter=1}"
                    HorizontalOptions="FillAndExpand"
                   RoundedCornerRadius="20" HeightRequest="100"
                   BorderWidth="1" BorderColor="Transparent" BackgroundColor="Transparent"

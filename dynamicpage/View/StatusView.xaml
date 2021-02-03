@@ -4,7 +4,7 @@
           x:Class="dynamicpage.View.StatusView"
           xmlns:controls="clr-namespace:dynamicpage.CustomControl"
           xmlns:converters="clr-namespace:dynamicpage.Converters"
-          Height="30">
+          Height="40">
    <ViewCell.View>
          
 
@@ -12,7 +12,7 @@
 
           <Grid.Resources>    
             <ResourceDictionary>    
-                <converters:DictionaryConverter x:Key="DictConverter"/>    
+                <converters:DictionaryConverter x:Key="dictConverter"/>    
             </ResourceDictionary>    
          </Grid.Resources>
 
@@ -31,7 +31,7 @@
                       WidthRequest="130"/>
 
               <controls:CustomLabel
-                  BindingKey="{Binding Path=., Mode=TwoWay,Converter={StaticResource DictConverter},ConverterParameter=0}"
+                  BindingKey="{Binding Path=., Mode=TwoWay,Converter={StaticResource dictConverter},ConverterParameter=0}"
                   Grid.Column="1" Grid.Row="0" HorizontalOptions="FillAndExpand"
                       WidthRequest="130"/>
               </StackLayout>
