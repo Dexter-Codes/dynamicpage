@@ -14,8 +14,10 @@ namespace dynamicpage.View
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
             Dictionary<string, string> test = (Dictionary<string, string>)item;
+
             if (test.ContainsValue("Status_Label"))
                 return StatusLabelTemplate;
+
             else if (test.ContainsValue("Title_Label"))
                 return TitleTemplate;
 

@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="dynamicpage.View.ListDetailView"
              xmlns:subview="clr-namespace:dynamicpage.View"
              xmlns:local="clr-namespace:dynamicpage.View">
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="statusTemplate">
@@ -23,6 +24,7 @@
                 TitleTemplate="{StaticResource labelTemplate}"/>
         </ResourceDictionary>
     </ContentPage.Resources>
+
     <ContentPage.Content>
         <ListView ItemsSource="{Binding OrderDetail}"  ItemTemplate="{StaticResource cellDataTemplateSelector}"
                   HorizontalOptions="FillAndExpand" SelectionMode="None" Margin="0,10" InputTransparent="False"

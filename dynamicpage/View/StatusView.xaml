@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          x:Class="dynamicpage.View.StatusView"
+          xmlns:controls="clr-namespace:dynamicpage.CustomControl"
+          xmlns:converters="clr-namespace:dynamicpage.Converters"
+          Height="30">
+   <ViewCell.View>
+         
+
+     <Grid RowSpacing="10" Padding="0" BackgroundColor="Transparent" Margin="10,0">
+
+          <Grid.Resources>    
+            <ResourceDictionary>    
+                <converters:DictionaryConverter x:Key="DictConverter"/>    
+            </ResourceDictionary>    
+         </Grid.Resources>
+
+         <Grid.RowDefinitions>
+             <RowDefinition Height="*"/>
+         </Grid.RowDefinitions>
+         <Grid.ColumnDefinitions>
+             <ColumnDefinition Width="2*"/>
+             <ColumnDefinition Width="2*"/>
+         </Grid.ColumnDefinitions>
+
+          <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Grid.ColumnSpan="2" Margin="0">
+              <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand" Margin="10">
+              <controls:CustomLabel             
+                      Grid.Column="0" Grid.Row="0" HorizontalOptions="FillAndExpand" Text=""
+                      WidthRequest="130"/>
+
+              <controls:CustomLabel
+                  BindingKey="{Binding Path=., Mode=TwoWay,Converter={StaticResource DictConverter},ConverterParameter=0}"
+                  Grid.Column="1" Grid.Row="0" HorizontalOptions="FillAndExpand"
+                      WidthRequest="130"/>
+              </StackLayout>
+          </StackLayout>
+
+     </Grid>
+  </ViewCell.View>
+</ViewCell>

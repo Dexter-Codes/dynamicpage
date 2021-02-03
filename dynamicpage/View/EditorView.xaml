@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="dynamicpage.View.EditorView"
+             xmlns:controls="clr-namespace:dynamicpage.CustomControl"
+             xmlns:converters="clr-namespace:dynamicpage.Converters"
+             Height="150">
+
+     <ViewCell.View>
+         
+
+     <Grid RowSpacing="10" Padding="0" BackgroundColor="Transparent" Margin="10,0">
+
+          <Grid.Resources>    
+            <ResourceDictionary>    
+                <converters:DictionaryConverter x:Key="DictConverter"/>    
+            </ResourceDictionary>    
+         </Grid.Resources>
+
+         <Grid.RowDefinitions>
+             <RowDefinition Height="*"/>
+         </Grid.RowDefinitions>
+         <Grid.ColumnDefinitions>
+             <ColumnDefinition Width="2*"/>
+             <ColumnDefinition Width="2*"/>
+         </Grid.ColumnDefinitions>
+
+          <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Grid.ColumnSpan="2" Margin="0">
+              <StackLayout Orientation="Vertical"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10">
+              <controls:CustomLabel 
+                  BindingKey="{Binding Path=., Mode=TwoWay, Converter={StaticResource DictConverter},ConverterParameter=0}"
+                      Grid.Column="0" Grid.Row="0" HorizontalOptions="FillAndExpand"
+                     VerticalOptions="FillAndExpand" WidthRequest="130"/>
+                  
+              <controls:CustomFrame CornerRadius="20" HasShadow="True" Padding="0" Grid.Column="0" Grid.Row="0">
+              <controls:CustomEditor
+                  Text="{Binding Path=., Mode=TwoWay,Converter={StaticResource DictConverter},ConverterParameter=1}"
+                   HorizontalOptions="FillAndExpand"
+                  RoundedCornerRadius="20" HeightRequest="100"
+                  BorderWidth="1" BorderColor="Transparent" BackgroundColor="Transparent"
+                     VerticalOptions="FillAndExpand" WidthRequest="130"/>
+              </controls:CustomFrame>
+              </StackLayout>
+          </StackLayout>
+
+     </Grid>
+  </ViewCell.View>
+</ViewCell>

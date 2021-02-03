@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace dynamicpage.View
 {
-    public partial class Test : ContentPage
+    public partial class ButtonView : ViewCell
     {
-        public Test()
+        public ButtonView()
         {
             InitializeComponent();
         }

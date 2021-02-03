@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using Xamarin.Forms;
 
+
 namespace dynamicpage.Converters
 {
     public class KeyToValueConverter:IValueConverter
@@ -15,12 +16,10 @@ namespace dynamicpage.Converters
             {
                 string text = "";
                 List<Dictionary<string, string>> data = new List<Dictionary<string, string>>();
+
                 data = (List<Dictionary<string, string>>)value;
 
                 Object test = (object)parameter;
-
-             //   Dictionary<string, string> param = new Dictionary<string, string>();
-          //      param = (Dictionary<string, string>)test;
 
                 foreach (var item in data)
                 {
@@ -37,38 +36,7 @@ namespace dynamicpage.Converters
 
                         }
                     }
-                    // foreach (var list in item)
-                    // {
-                    //if(item.IndexOf(list).Equals(test))
-                    //{
-                    //    foreach(var s in list)
-                    //    {
-                    //        var x = s.Value;
-                    //        if (x != "Label")
-                    //            text = x;
-                    //    }
-                    //}
-
-
-
-                    //  foreach(var s in list)
-                    //  {
-                    //foreach (var k in param)
-                    //{
-                    //    var x = k.Value.Contains(s.Value);
-
-                    //    if (x)
-                    //    {
-                    //        if (!s.Value.Equals("Label"))
-                    //        {
-                    //            text = s.Value;
-                    //            goto here;
-                    //        }
-                    //    }
-                    //}
-                    //  }
-
-                    //   }
+                  
                 }
                 return text;
             }
@@ -91,24 +59,31 @@ namespace dynamicpage.Converters
             if (value != null)
             {
                 string text = "";
+
                 Dictionary<string, string> data = new Dictionary<string, string>();
                 data = (Dictionary<string, string>)value;
-                var j = data.Values;
-                int index = (int)parameter;
+               
+                int index= System.Convert.ToInt32(parameter);
 
-                List<string> x = (from d in j select d).ToList();
+                List<string> val = (from d in data.Values select d).ToList();
 
+
+                //Setting values to the label or entry based on the index.
 
                 if (index == 0)
                 {
-                    text = x[1];
+                    text = val[1];
                 }
+
                 else
-                    text = x[2];
+                {
+                    text = val[2];
+                }
 
                 return text;
             }
             else
+
                 return "";
         }
 
