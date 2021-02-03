@@ -70,28 +70,29 @@ namespace dynamicpage.View
 
             var statusDataTemplate = new DataTemplate(() =>
             {
-                var gridLayout = new Grid { RowSpacing = 10, Padding = new Thickness(0, 10, 0, 10), Margin = 10, BackgroundColor = Color.Transparent };
+                var gridLayout = new Grid { RowSpacing = 10, Padding = new Thickness(0, 0, 0, 0), Margin = new Thickness(10,0), BackgroundColor = Color.Red };
 
                 gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
                 gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
 
-                gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-                var outerlayout = new StackLayout { Margin = 10 };
-                var layout = new StackLayout { Orientation = StackOrientation.Horizontal, Margin = 10 };
+                gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(30, GridUnitType.Absolute) });
+                var outerlayout = new StackLayout { Margin = 0, HorizontalOptions=LayoutOptions.FillAndExpand,VerticalOptions=LayoutOptions.Start };
+                var layout = new StackLayout { Orientation = StackOrientation.Horizontal, Margin = 10, HorizontalOptions=LayoutOptions.FillAndExpand };
                 var label1 = new CustomLabel { HorizontalOptions = LayoutOptions.StartAndExpand, WidthRequest = 130 };
-                var label2 = new CustomLabel { HorizontalOptions = LayoutOptions.CenterAndExpand, WidthRequest = 130,Text="Compkletd" };
+                var label2 = new CustomLabel { HorizontalOptions = LayoutOptions.CenterAndExpand, WidthRequest = 130,Text="Completed" };
                 gridLayout.Children.Add(label1, 0, 0);
                 gridLayout.Children.Add(label2, 1, 0);
                 layout.Children.Add(label1);
                 layout.Children.Add(label2);
                 outerlayout.Children.Add(layout);
-
-                return new ViewCell { View = gridLayout };
+                Grid.SetColumnSpan(outerlayout, 2);
+                gridLayout.Children.Add(outerlayout);
+                return new ViewCell { View = gridLayout,Height=30 };
             });
 
             var titleDataTemplate = new DataTemplate(() =>
             {
-                var gridLayout = new Grid { RowSpacing = 10, Padding = new Thickness(0, 10, 0, 10), Margin = 10, BackgroundColor = Color.Transparent };
+                var gridLayout = new Grid { RowSpacing = 10, Padding = new Thickness(0, 0, 0, 0), Margin = new Thickness(10,0), BackgroundColor = Color.Blue };
 
                 gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
                 gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
@@ -99,26 +100,28 @@ namespace dynamicpage.View
                 gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
                 var outerlayout = new StackLayout { Margin = 10 };
                 var layout = new StackLayout
-                { Orientation = StackOrientation.Horizontal, Margin = 10 };
-                var label1 = new CustomLabel { HorizontalOptions = LayoutOptions.StartAndExpand, WidthRequest = 130, Text="5565rt" };
-                var label2 = new CustomLabel { HorizontalOptions = LayoutOptions.CenterAndExpand, WidthRequest = 130, BindingKey = "656nh" };
+                { Orientation = StackOrientation.Horizontal, Margin = 0 };
+                var label1 = new CustomLabel { HorizontalOptions = LayoutOptions.StartAndExpand, WidthRequest = 130, Text="Property" };
+                var label2 = new CustomLabel { HorizontalOptions = LayoutOptions.CenterAndExpand, WidthRequest = 130, BindingKey = "13LA" };
                 gridLayout.Children.Add(label1, 0, 0);
                 gridLayout.Children.Add(label2, 1, 0);
                 layout.Children.Add(label1);
                 layout.Children.Add(label2);
                 outerlayout.Children.Add(layout);
-                return new ViewCell { View = gridLayout };
+                Grid.SetColumnSpan(outerlayout, 2);
+                gridLayout.Children.Add(outerlayout);
+                return new ViewCell { View = gridLayout,Height=40 };
             });
 
             var entryDataTemplate = new DataTemplate(()=>
             {
-                var gridLayout = new Grid { RowSpacing = 10, Padding = new Thickness(0, 10, 0, 10), Margin = 10, BackgroundColor = Color.Transparent };
+                var gridLayout = new Grid { RowSpacing = 10, Padding = new Thickness(0, 0, 0, 0), Margin = new Thickness(10,0), BackgroundColor = Color.Yellow };
 
                 gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
                 gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
 
                 gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-                var outerlayout = new StackLayout { Margin = 10 };
+                var outerlayout = new StackLayout { Margin = 0 };
                 var layout = new StackLayout { Orientation = StackOrientation.Vertical, Margin = 10 };
                 var label = new CustomLabel { HorizontalOptions = LayoutOptions.StartAndExpand, BindingKey = "Note" };
                 var entry = new CustomEditor
@@ -141,18 +144,19 @@ namespace dynamicpage.View
                 layout.Children.Add(frame);
                 outerlayout.Children.Add(layout);
                 Grid.SetColumnSpan(layout, 2);
-
-                return new ViewCell { View = gridLayout };
+                Grid.SetColumnSpan(outerlayout, 2);
+                gridLayout.Children.Add(outerlayout);
+                return new ViewCell { View = gridLayout,Height=150 };
             });
             var btntemplate = new DataTemplate(()=>
             {
-                var gridLayout = new Grid { RowSpacing = 10, Padding = new Thickness(0, 10, 0, 10), Margin = 10, BackgroundColor = Color.Transparent };
+                var gridLayout = new Grid { RowSpacing = 0, Padding = new Thickness(0, 0, 0, 0), Margin = new Thickness(10,0), BackgroundColor = Color.Gray };
 
                 gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
                 gridLayout.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
 
                 gridLayout.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-                var outerlayout = new StackLayout { Margin = 10 };
+                var outerlayout = new StackLayout { Margin = new Thickness(0)};
                 var layout = new StackLayout { Orientation = StackOrientation.Horizontal, Margin = 10 };
                 var btn1 = new RoundedButtonLeft
                 {
@@ -177,7 +181,9 @@ namespace dynamicpage.View
                 layout.Children.Add(btn1);
                 layout.Children.Add(btn2);
                 outerlayout.Children.Add(layout);
-                return new ViewCell { View = gridLayout };
+                Grid.SetColumnSpan(outerlayout, 2);
+                gridLayout.Children.Add(outerlayout);
+                return new ViewCell { View = gridLayout,Height=40 };
             });
 
             Content = new StackLayout
@@ -185,7 +191,10 @@ namespace dynamicpage.View
                 Margin = new Thickness(5),
                 Children = {
                     new ListView { ItemTemplate = new PersonDataTemplateSelector{ StatusLabelTemplate = statusDataTemplate, TitleTemplate=titleDataTemplate, EntryTemplate=entryDataTemplate,ButtonTemplate= btntemplate},
-                        ItemsSource = Test, Margin = new Thickness(0, 10, 0, 10), HasUnevenRows = true, SeparatorVisibility=SeparatorVisibility.None}
+                        ItemsSource = Test, Margin = new Thickness(0, 10, 0, 10), InputTransparent=false,
+                        HasUnevenRows = true, SeparatorVisibility=SeparatorVisibility.None,
+                        HorizontalOptions=LayoutOptions.FillAndExpand,SelectionMode=ListViewSelectionMode.None,
+                        }
                 }
 
             };

@@ -131,6 +131,7 @@ namespace dynamicpage
                     BorderColor=Color.Gray,
                     
                 };
+           // View.HeightRequest = 150;
             this.View.Margin = 5;
 
         }

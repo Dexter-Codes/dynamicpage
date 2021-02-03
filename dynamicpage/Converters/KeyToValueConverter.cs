@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace dynamicpage.Converters
@@ -76,6 +77,40 @@ namespace dynamicpage.Converters
         }
 
         
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class DictionaryConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value != null)
+            {
+                string text = "";
+                Dictionary<string, string> data = new Dictionary<string, string>();
+                data = (Dictionary<string, string>)value;
+                var j = data.Values;
+                int index = (int)parameter;
+
+                List<string> x = (from d in j select d).ToList();
+
+
+                if (index == 0)
+                {
+                    text = x[1];
+                }
+                else
+                    text = x[2];
+
+                return text;
+            }
+            else
+                return "";
+        }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {

@@ -14,7 +14,9 @@ namespace dynamicpage
         {
             InitializeComponent();
             PushValues();
-            MainPage = new DynamicOrderDetail();
+            // MainPage = new MainPage();
+            MainPage = new ListDetailView();
+                //new DynamicOrderDetail();
                 //new DynamicPage(uiElements);
         }
 

@@ -61,16 +61,25 @@ namespace dynamicpage
                 rowHeight = rowHeight + 10;
 
 
-          //  rowHeight = 300;
+            //var list = new ListView { ItemTemplate = new DataTemplate(typeof(DynamicCellTemplate)), ItemsSource = Test,
+            //    Margin = new Thickness(0, 10, 0, 10), RowHeight = rowHeight,
+            //    VerticalOptions = LayoutOptions.FillAndExpand,
+            //    SeparatorVisibility = SeparatorVisibility.None, InputTransparent = false };
+
 
             Content = new StackLayout
             {
                 Margin = new Thickness(5),
                 Children = {
-                    new ListView { ItemTemplate = new DataTemplate(typeof(DynamicCellTemplate)), ItemsSource = Test, Margin = new Thickness(0, 10, 0, 10), RowHeight = rowHeight, HasUnevenRows = false, SeparatorVisibility=SeparatorVisibility.None,InputTransparent=true,}
-                }
-                
+                   new ListView { ItemTemplate = new DataTemplate(typeof(DynamicCellTemplate)), ItemsSource = Test,
+                       Margin = new Thickness(0, 10, 0, 10), RowHeight = rowHeight,HeightRequest=rowHeight,
+                       HasUnevenRows = false, SeparatorVisibility=SeparatorVisibility.None,InputTransparent=false,
+                   VerticalOptions=LayoutOptions.FillAndExpand}
+               }
+
             };
+           // Content = list;
+            Content.Margin = new Thickness(5);
 
             this.BindingContext = Test;
 
@@ -104,7 +113,7 @@ namespace dynamicpage
         void dummyMethod()
         {
             var listItems = new List<List<Dictionary<string, string>>>();
-            for (int index = 0; index < 6; index++)
+            for (int index = 0; index < 12; index++)
             {
                 var itemDict1 = new List<Dictionary<string, string>>();
                 var item1 = new Dictionary<string, string>();
